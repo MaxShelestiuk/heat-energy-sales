@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="module_category_heat" model="ir.module.category">
+        <field name="name">Heat Energy Sales</field>
+    </record>
+    <record id="privilege_heat" model="res.groups.privilege">
+        <field name="name">Heat Energy Sales</field>
+        <field name="category_id" ref="module_category_heat"/>
+    </record>
+    <record id="group_heat_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+        <field name="privilege_id" ref="privilege_heat"/>
+    </record>
+    <record id="group_heat_controller" model="res.groups">
+        <field name="name">Controller</field>
+        <field name="privilege_id" ref="privilege_heat"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_heat_user'))]"/>
+    </record>
+    <record id="group_heat_sales" model="res.groups">
+        <field name="name">Sales</field>
+        <field name="privilege_id" ref="privilege_heat"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_heat_user'))]"/>
+    </record>
+    <record id="group_heat_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="privilege_id" ref="privilege_heat"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_heat_controller')), Command.link(ref('group_heat_sales'))]"/>
+    </record>
+    <record id="rule_tariff_company" model="ir.rule">
+        <field name="name">Heat tariffs: allowed companies</field>
+        <field name="model_id" ref="model_heat_tariff"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_supply_node_company" model="ir.rule">
+        <field name="name">supply_node: allowed companies</field>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="model_id" ref="model_heat_supply_node"/>
+    </record>
+    <record id="rule_supply_object_company" model="ir.rule">
+        <field name="name">supply_object: allowed companies</field>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="model_id" ref="model_heat_supply_object"/>
+    </record>
+    <record id="rule_meter_company" model="ir.rule">
+        <field name="name">meter: allowed companies</field>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="model_id" ref="model_heat_meter"/>
+    </record>
+    <record id="rule_meter_reading_company" model="ir.rule">
+        <field name="name">meter_reading: allowed companies</field>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="model_id" ref="model_heat_meter_reading"/>
+    </record>
+    <record id="rule_meter_controller" model="ir.rule">
+        <field name="name">meter: assigned controller</field>
+        <field name="domain_force">[('controller_user_id', '=', user.id)]</field>
+        <field name="model_id" ref="model_heat_meter"/>
+        <field name="groups" eval="[Command.link(ref('group_heat_controller'))]"/>
+    </record>
+    <record id="rule_meter_sales" model="ir.rule">
+        <field name="name">meter: sales read all</field>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="model_id" ref="model_heat_meter"/>
+        <field name="groups" eval="[Command.link(ref('group_heat_sales'))]"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="rule_meter_admin" model="ir.rule">
+        <field name="name">meter: administrator</field>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="model_id" ref="model_heat_meter"/>
+        <field name="groups" eval="[Command.link(ref('group_heat_admin'))]"/>
+    </record>
+    <record id="rule_meter_reading_controller" model="ir.rule">
+        <field name="name">meter_reading: assigned controller</field>
+        <field name="domain_force">[('controller_user_id', '=', user.id)]</field>
+        <field name="model_id" ref="model_heat_meter_reading"/>
+        <field name="groups" eval="[Command.link(ref('group_heat_controller'))]"/>
+    </record>
+    <record id="rule_meter_reading_sales" model="ir.rule">
+        <field name="name">meter_reading: sales read all</field>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="model_id" ref="model_heat_meter_reading"/>
+        <field name="groups" eval="[Command.link(ref('group_heat_sales'))]"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="rule_meter_reading_admin" model="ir.rule">
+        <field name="name">meter_reading: administrator</field>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="model_id" ref="model_heat_meter_reading"/>
+        <field name="groups" eval="[Command.link(ref('group_heat_admin'))]"/>
+    </record>
+    <record id="rule_bill_company" model="ir.rule">
+        <field name="name">Heat bill: allowed companies</field>
+        <field name="model_id" ref="model_heat_bill"/>
+        <field name="domain_force">[(1, '=', 1)] if user.share else [('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_bill_assigned" model="ir.rule">
+        <field name="name">Heat bill: assigned sales</field>
+        <field name="model_id" ref="model_heat_bill"/>
+        <field name="domain_force">[('responsible_user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('group_heat_user'))]"/>
+    </record>
+    <record id="rule_bill_admin" model="ir.rule">
+        <field name="name">Heat bill: administrator</field>
+        <field name="model_id" ref="model_heat_bill"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_heat_admin'))]"/>
+    </record>
+    <record id="rule_bill_line_company" model="ir.rule">
+        <field name="name">Heat bill_line: allowed companies</field>
+        <field name="model_id" ref="model_heat_bill_line"/>
+        <field name="domain_force">[(1, '=', 1)] if user.share else [('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_bill_line_assigned" model="ir.rule">
+        <field name="name">Heat bill_line: assigned sales</field>
+        <field name="model_id" ref="model_heat_bill_line"/>
+        <field name="domain_force">[('bill_id.responsible_user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('group_heat_user'))]"/>
+    </record>
+    <record id="rule_bill_line_admin" model="ir.rule">
+        <field name="name">Heat bill_line: administrator</field>
+        <field name="model_id" ref="model_heat_bill_line"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_heat_admin'))]"/>
+    </record>
+    <record id="rule_bill_portal" model="ir.rule">
+        <field name="name">Portal: own issued heat bill</field>
+        <field name="model_id" ref="model_heat_bill"/>
+        <field name="groups" eval="[Command.link(ref('base.group_portal'))]"/>
+        <field name="domain_force">[('state', '=', 'issued'), ('consumer_id.commercial_partner_id', '=', user.partner_id.commercial_partner_id.id)]</field>
+    </record>
+    <record id="rule_bill_line_portal" model="ir.rule">
+        <field name="name">Portal: own issued heat bill_line</field>
+        <field name="model_id" ref="model_heat_bill_line"/>
+        <field name="groups" eval="[Command.link(ref('base.group_portal'))]"/>
+        <field name="domain_force">[('bill_id.state', '=', 'issued'), ('bill_id.consumer_id.commercial_partner_id', '=', user.partner_id.commercial_partner_id.id)]</field>
+    </record>
+</odoo>

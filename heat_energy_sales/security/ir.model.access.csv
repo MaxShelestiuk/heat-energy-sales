@@ -1,0 +1,20 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_consumer_category_user,consumer_category user,model_heat_consumer_category,group_heat_user,1,0,0,0
+access_consumer_category_sales,consumer_category sales,model_heat_consumer_category,group_heat_sales,1,1,1,1
+access_tariff_user,tariff user,model_heat_tariff,group_heat_user,1,0,0,0
+access_tariff_sales,tariff sales,model_heat_tariff,group_heat_sales,1,1,1,1
+access_supply_node_user,supply_node read,model_heat_supply_node,group_heat_user,1,0,0,0
+access_supply_node_sales,supply_node manage,model_heat_supply_node,group_heat_sales,1,1,1,1
+access_supply_object_user,supply_object read,model_heat_supply_object,group_heat_user,1,0,0,0
+access_supply_object_sales,supply_object manage,model_heat_supply_object,group_heat_sales,1,1,1,1
+access_meter_user,meter read,model_heat_meter,group_heat_user,1,0,0,0
+access_meter_controller,meter manage,model_heat_meter,group_heat_controller,1,1,1,1
+access_meter_reading_user,meter_reading read,model_heat_meter_reading,group_heat_user,1,0,0,0
+access_meter_reading_controller,meter_reading manage,model_heat_meter_reading,group_heat_controller,1,1,1,1
+access_bill_user,bill user,model_heat_bill,group_heat_user,1,0,0,0
+access_bill_sales,bill sales,model_heat_bill,group_heat_sales,1,1,1,1
+access_bill_line_user,bill_line user,model_heat_bill_line,group_heat_user,1,0,0,0
+access_bill_line_sales,bill_line sales,model_heat_bill_line,group_heat_sales,1,1,1,1
+access_generate_bills_sales,generate bills sales,model_heat_bill_generate_wizard,group_heat_sales,1,1,1,1
+access_bill_portal,bill portal,model_heat_bill,base.group_portal,1,0,0,0
+access_bill_line_portal,bill_line portal,model_heat_bill_line,base.group_portal,1,0,0,0

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_bill_list" model="ir.ui.view">
+        <field name="name">heat.bill.list</field>
+        <field name="model">heat.bill</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="consumer_id"/>
+                <field name="period_start"/>
+                <field name="responsible_user_id"/>
+                <field name="energy_total_gcal"/>
+                <field name="amount_untaxed"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_bill_form" model="ir.ui.view">
+        <field name="name">heat.bill.form</field>
+        <field name="model">heat.bill</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_calculate" string="Calculate" type="object" class="oe_highlight" invisible="state != 'draft'" groups="heat_energy_sales.group_heat_sales"/>
+                    <button name="action_approve" string="Approve" type="object" class="oe_highlight" invisible="state != 'calculated'" groups="heat_energy_sales.group_heat_sales"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state not in ('draft', 'calculated', 'approved')" groups="heat_energy_sales.group_heat_sales"/>
+                    <button name="action_reset_draft" string="Reset to Draft" type="object" invisible="state != 'cancelled'" groups="heat_energy_sales.group_heat_sales"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,calculated,approved,issued"/>
+                    <button name="action_issue" string="Issue" type="object" invisible="state != 'approved'" groups="heat_energy_sales.group_heat_sales" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="action_open_account_move" string="Accounting Invoice" type="object" invisible="not account_move_id" groups="account.group_account_invoice" icon="fa-file-text-o" class="oe_stat_button"/>
+                    </div>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="consumer_id" readonly="state != 'draft'"/>
+                            <field name="period_start" readonly="state != 'draft'"/>
+                            <field name="period_end"/>
+                            <field name="responsible_user_id" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="company_id" readonly="state != 'draft'"/>
+                            <field name="currency_id"/>
+                            <field name="energy_total_gcal"/>
+                            <field name="amount_untaxed"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Calculation">
+                            <field name="line_ids"/>
+                        </page>
+                        <page string="Audit">
+                            <group>
+                                <field name="calculated_at"/>
+                                <field name="approved_at"/>
+                                <field name="issued_at"/>
+                                <field name="cancellation_reason" readonly="state in ('issued', 'cancelled')"/>
+                                <field name="source_reading_ids" widget="many2many_tags"/>
+                                <field name="calculation_log"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <field name="account_move_id" invisible="1"/>
+                    <field name="account_move_state" readonly="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_bill" model="ir.actions.act_window">
+        <field name="name">Monthly Bills</field>
+        <field name="res_model">heat.bill</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bill_line_list" model="ir.ui.view">
+        <field name="name">heat.bill.line.list</field>
+        <field name="model">heat.bill.line</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0">
+                <field name="bill_id"/>
+                <field name="supply_object_id"/>
+                <field name="actual_consumer_id"/>
+                <field name="calculation_method"/>
+                <field name="quantity_gcal" string="Gcal" width="100px"/>
+                <field name="price_unit"/>
+                <field name="subtotal"/>
+                <field name="currency_id"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_bill_line_form" model="ir.ui.view">
+        <field name="name">heat.bill.line.form</field>
+        <field name="model">heat.bill.line</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <field name="bill_id"/>
+                        <field name="sequence"/>
+                        <field name="supply_object_id"/>
+                        <field name="node_id"/>
+                        <field name="actual_consumer_id"/>
+                        <field name="billing_consumer_id"/>
+                        <field name="calculation_method"/>
+                        <field name="source_meter_id"/>
+                        <field name="start_reading_id"/>
+                        <field name="end_reading_id"/>
+                        <field name="heated_volume_m3"/>
+                        <field name="allocation_share"/>
+                        <field name="quantity_gcal"/>
+                        <field name="category_id"/>
+                        <field name="tariff_id"/>
+                        <field name="price_unit"/>
+                        <field name="subtotal"/>
+                        <field name="currency_id"/>
+                        <field name="company_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_bill_line" model="ir.actions.act_window">
+        <field name="name">Bill Lines</field>
+        <field name="res_model">heat.bill.line</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

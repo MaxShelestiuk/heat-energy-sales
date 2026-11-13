@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="heat_bill_layout">
+        <div class="header" style="font-family: DejaVu Sans, sans-serif; border-bottom: 2px solid #087f78; padding-bottom: 8px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 24%;">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-width: 140px; max-height: 60px;" alt="Company logo"/>
+                    </td>
+                    <td style="text-align: right;">
+                        <strong t-field="company.name"/>
+                        <div t-field="company.partner_id" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': True}"/>
+                        <div t-if="company.vat">Tax ID: <span t-field="company.vat"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id" t-att-data-oe-lang="o.env.context.get('lang')" style="font-family: DejaVu Sans, sans-serif; font-size: 11px;">
+            <t t-out="0"/>
+        </div>
+        <div class="footer" style="font-family: DejaVu Sans, sans-serif; font-size: 10px; border-top: 1px solid #087f78; padding-top: 6px;">
+            <span t-field="company.name"/> · <span t-field="company.heat_report_footer"/>
+            <div style="text-align: right;">Page <span class="page"/> / <span class="topage"/>
+            </div>
+        </div>
+    </template>
+    <template id="report_heat_bill">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="company" t-value="o.company_id"/>
+                <t t-call="heat_energy_sales.heat_bill_layout">
+                    <div class="page">
+                        <h2 style="color: #087f78; margin-bottom: 6px;">Heat Energy Bill</h2>
+                        <h3>
+                            <span t-field="o.name"/> · <span t-field="o.state"/>
+                        </h3>
+                        <table style="width: 100%; margin: 18px 0;">
+                            <tr>
+                                <td style="width: 60%; vertical-align: top;">
+                                    <strong>Consumer:</strong>
+                                    <span t-field="o.consumer_id.name"/>
+                                    <div t-field="o.consumer_id" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': True}"/>
+                                    <div>
+                                        <strong>Contract:</strong>
+                                        <span t-field="o.consumer_id.heat_contract_number"/>
+                                        <span t-field="o.consumer_id.heat_contract_date"/>
+                                    </div>
+                                </td>
+                                <td style="vertical-align: top;">
+                                    <strong>Period:</strong>
+                                    <br/>
+                                    <span t-field="o.period_start"/> - <span t-field="o.period_end"/>
+                                    <div t-if="o.account_move_id">
+                                        <strong>Accounting invoice:</strong>
+                                        <span t-field="o.account_move_id.name"/>
+                                        <br/>
+                                        <span t-field="o.account_move_state"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 10px;" class="table table-sm">
+                            <thead style="display: table-header-group; background: #e8f3f1;">
+                                <tr>
+                                    <th>Object / actual consumer</th>
+                                    <th>Method</th>
+                                    <th style="text-align: right;">Gcal</th>
+                                    <th>Category</th>
+                                    <th style="text-align: right;">Price / Gcal</th>
+                                    <th style="text-align: right;">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids" t-as="line" style="page-break-inside: avoid; border-bottom: 1px solid #d9dfda;">
+                                    <td style="padding: 9px 4px;">
+                                        <strong t-field="line.supply_object_id.name"/>
+                                        <br/>
+                                        <span t-field="line.actual_consumer_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.calculation_method"/>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-field="line.quantity_gcal" t-options="{'widget': 'float', 'precision': 6}"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.category_id.name"/>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-field="line.subtotal"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="text-align: right; margin-top: 20px; page-break-inside: avoid;">
+                            <p>
+                                <strong>Energy consumed:</strong>
+                                <span t-field="o.energy_total_gcal" t-options="{'widget': 'float', 'precision': 6}"/> Gcal</p>
+                            <p style="font-size: 15px;">
+                                <strong>Total excluding VAT:</strong>
+                                <span t-field="o.amount_untaxed"/>
+                            </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

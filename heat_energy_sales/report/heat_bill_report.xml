@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="paperformat_heat_bill" model="report.paperformat">
+        <field name="name">Heat Bill A4</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">38</field>
+        <field name="margin_bottom">22</field>
+        <field name="margin_left">12</field>
+        <field name="margin_right">12</field>
+        <field name="header_spacing">8</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="action_report_heat_bill" model="ir.actions.report">
+        <field name="name">Heat Energy Bill</field>
+        <field name="model">heat.bill</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">heat_energy_sales.report_heat_bill</field>
+        <field name="report_file">heat_energy_sales.report_heat_bill</field>
+        <field name="binding_model_id" ref="model_heat_bill"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_heat_bill"/>
+        <field name="print_report_name">'Heat Bill - %s' % object.name</field>
+    </record>
+</odoo>

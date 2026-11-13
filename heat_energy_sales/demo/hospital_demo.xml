@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo noupdate="1">
+    <record id="company_heat_demo" model="res.company">
+        <field name="name">Dnipro Heat Demonstration</field>
+        <field name="street">12 Teplova Street</field>
+        <field name="city">Dnipro</field>
+        <field name="zip">49000</field>
+        <field name="heat_report_footer">Щомісячний розподіл теплової енергії</field>
+        <field name="country_id" ref="base.ua"/>
+        <field name="currency_id" ref="base.UAH"/>
+        <field name="logo" type="base64" file="heat_energy_sales/static/description/icon.png"/>
+    </record>
+    <record id="category_population" model="heat.consumer.category">
+        <field name="name">Population</field>
+        <field name="code">POPULATION</field>
+    </record>
+    <record id="tariff_population" model="heat.tariff">
+        <field name="category_id" ref="category_population"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="price_per_gcal">2000</field>
+        <field name="company_id" ref="company_heat_demo"/>
+        <field name="currency_id" ref="base.UAH"/>
+    </record>
+    <record id="category_budget" model="heat.consumer.category">
+        <field name="name">Budget</field>
+        <field name="code">BUDGET</field>
+    </record>
+    <record id="tariff_budget" model="heat.tariff">
+        <field name="category_id" ref="category_budget"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="price_per_gcal">1500</field>
+        <field name="company_id" ref="company_heat_demo"/>
+        <field name="currency_id" ref="base.UAH"/>
+    </record>
+    <record id="category_other" model="heat.consumer.category">
+        <field name="name">Other</field>
+        <field name="code">OTHER</field>
+    </record>
+    <record id="tariff_other" model="heat.tariff">
+        <field name="category_id" ref="category_other"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="price_per_gcal">2000</field>
+        <field name="company_id" ref="company_heat_demo"/>
+        <field name="currency_id" ref="base.UAH"/>
+    </record>
+    <record id="category_religious" model="heat.consumer.category">
+        <field name="name">Religious</field>
+        <field name="code">RELIGIOUS</field>
+    </record>
+    <record id="tariff_religious" model="heat.tariff">
+        <field name="category_id" ref="category_religious"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="price_per_gcal">2000</field>
+        <field name="company_id" ref="company_heat_demo"/>
+        <field name="currency_id" ref="base.UAH"/>
+    </record>
+    <record id="hospital" model="res.partner">
+        <field name="name">Hospital No. 1</field>
+        <field name="is_company" eval="True"/>
+        <field name="is_heat_consumer" eval="True"/>
+        <field name="heat_category_id" ref="category_budget"/>
+        <field name="has_heat_contract" eval="True"/>
+        <field name="street">12 Teplova Street</field>
+        <field name="city">Dnipro</field>
+        <field name="country_id" ref="base.ua"/>
+        <field name="heat_contract_number">HEAT-2026-HOSPITAL</field>
+        <field name="heat_contract_date">2026-01-01</field>
+    </record>
+    <record id="pharmacy_a" model="res.partner">
+        <field name="name">Pharmacy A</field>
+        <field name="is_company" eval="True"/>
+        <field name="is_heat_consumer" eval="True"/>
+        <field name="heat_category_id" ref="category_other"/>
+        <field name="has_heat_contract" eval="False"/>
+        <field name="street">14 Teplova Street</field>
+        <field name="city">Dnipro</field>
+        <field name="country_id" ref="base.ua"/>
+    </record>
+    <record id="pharmacy_b" model="res.partner">
+        <field name="name">Pharmacy B</field>
+        <field name="is_company" eval="True"/>
+        <field name="is_heat_consumer" eval="True"/>
+        <field name="heat_category_id" ref="category_other"/>
+        <field name="has_heat_contract" eval="True"/>
+        <field name="street">14 Teplova Street</field>
+        <field name="city">Dnipro</field>
+        <field name="country_id" ref="base.ua"/>
+        <field name="heat_contract_number">HEAT-2026-PHARMACY_B</field>
+        <field name="heat_contract_date">2026-01-01</field>
+    </record>
+    <record id="school" model="res.partner">
+        <field name="name">School</field>
+        <field name="is_company" eval="True"/>
+        <field name="is_heat_consumer" eval="True"/>
+        <field name="heat_category_id" ref="category_budget"/>
+        <field name="has_heat_contract" eval="True"/>
+        <field name="street">14 Teplova Street</field>
+        <field name="city">Dnipro</field>
+        <field name="country_id" ref="base.ua"/>
+        <field name="heat_contract_number">HEAT-2026-SCHOOL</field>
+        <field name="heat_contract_date">2026-01-01</field>
+    </record>
+    <record id="church" model="res.partner">
+        <field name="name">Church</field>
+        <field name="is_company" eval="True"/>
+        <field name="is_heat_consumer" eval="True"/>
+        <field name="heat_category_id" ref="category_religious"/>
+        <field name="has_heat_contract" eval="True"/>
+        <field name="street">14 Teplova Street</field>
+        <field name="city">Dnipro</field>
+        <field name="country_id" ref="base.ua"/>
+        <field name="heat_contract_number">HEAT-2026-CHURCH</field>
+        <field name="heat_contract_date">2026-01-01</field>
+    </record>
+    <record id="node_hospital" model="heat.supply.node">
+        <field name="name">Hospital Inlet</field>
+        <field name="code">HOSPITAL</field>
+        <field name="main_consumer_id" ref="hospital"/>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="node_school" model="heat.supply.node">
+        <field name="name">School Inlet</field>
+        <field name="code">SCHOOL</field>
+        <field name="main_consumer_id" ref="school"/>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="node_church" model="heat.supply.node">
+        <field name="name">Church Inlet</field>
+        <field name="code">CHURCH</field>
+        <field name="main_consumer_id" ref="church"/>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="object_block1" model="heat.supply.object">
+        <field name="name">Hospital Block 1</field>
+        <field name="code">BLOCK1</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="owner_id" ref="hospital"/>
+        <field name="heated_volume_m3">2000</field>
+    </record>
+    <record id="object_lab" model="heat.supply.object">
+        <field name="name">Laboratory</field>
+        <field name="code">LAB</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="owner_id" ref="hospital"/>
+        <field name="heated_volume_m3">1000</field>
+    </record>
+    <record id="object_block2" model="heat.supply.object">
+        <field name="name">Hospital Block 2</field>
+        <field name="code">BLOCK2</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="owner_id" ref="hospital"/>
+        <field name="heated_volume_m3">1500</field>
+    </record>
+    <record id="object_pharmacy1" model="heat.supply.object">
+        <field name="name">Pharmacy 1</field>
+        <field name="code">PHARMACY1</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="owner_id" ref="pharmacy_a"/>
+        <field name="heated_volume_m3">200</field>
+    </record>
+    <record id="object_pharmacy2" model="heat.supply.object">
+        <field name="name">Pharmacy 2</field>
+        <field name="code">PHARMACY2</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="owner_id" ref="pharmacy_b"/>
+        <field name="heated_volume_m3">1000</field>
+    </record>
+    <record id="object_school1" model="heat.supply.object">
+        <field name="name">School Main Building</field>
+        <field name="code">SCHOOL1</field>
+        <field name="node_id" ref="node_school"/>
+        <field name="owner_id" ref="school"/>
+        <field name="heated_volume_m3">3000</field>
+    </record>
+    <record id="object_school2" model="heat.supply.object">
+        <field name="name">School Annex</field>
+        <field name="code">SCHOOL2</field>
+        <field name="node_id" ref="node_school"/>
+        <field name="owner_id" ref="school"/>
+        <field name="heated_volume_m3">1000</field>
+    </record>
+    <record id="object_church1" model="heat.supply.object">
+        <field name="name">Church Building</field>
+        <field name="code">CHURCH1</field>
+        <field name="node_id" ref="node_church"/>
+        <field name="owner_id" ref="church"/>
+        <field name="heated_volume_m3">2000</field>
+    </record>
+    <record id="meter_hospital" model="heat.meter">
+        <field name="name">Meter hospital</field>
+        <field name="serial_number">DEMO-HOSPITAL</field>
+        <field name="meter_type">main</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="controller_user_id" ref="base.user_admin"/>
+        <field name="installation_date">2026-01-01</field>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="reading_hospital_start" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_hospital"/>
+        <field name="reading_date">2026-10-01</field>
+        <field name="value">1000</field>
+    </record>
+    <record id="reading_hospital_mid" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_hospital"/>
+        <field name="reading_date">2026-10-15</field>
+        <field name="value">1050.0</field>
+    </record>
+    <record id="reading_hospital_end" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_hospital"/>
+        <field name="reading_date">2026-11-01</field>
+        <field name="value">1100</field>
+    </record>
+    <record id="meter_block2" model="heat.meter">
+        <field name="name">Meter block2</field>
+        <field name="serial_number">DEMO-BLOCK2</field>
+        <field name="meter_type">sub</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="controller_user_id" ref="base.user_admin"/>
+        <field name="installation_date">2026-01-01</field>
+        <field name="object_id" ref="object_block2"/>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="reading_block2_start" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_block2"/>
+        <field name="reading_date">2026-10-01</field>
+        <field name="value">200</field>
+    </record>
+    <record id="reading_block2_mid" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_block2"/>
+        <field name="reading_date">2026-10-15</field>
+        <field name="value">215.0</field>
+    </record>
+    <record id="reading_block2_end" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_block2"/>
+        <field name="reading_date">2026-11-01</field>
+        <field name="value">230</field>
+    </record>
+    <record id="meter_pharmacy1" model="heat.meter">
+        <field name="name">Meter pharmacy1</field>
+        <field name="serial_number">DEMO-PHARMACY1</field>
+        <field name="meter_type">sub</field>
+        <field name="node_id" ref="node_hospital"/>
+        <field name="controller_user_id" ref="base.user_admin"/>
+        <field name="installation_date">2026-01-01</field>
+        <field name="object_id" ref="object_pharmacy1"/>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="reading_pharmacy1_start" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_pharmacy1"/>
+        <field name="reading_date">2026-10-01</field>
+        <field name="value">50</field>
+    </record>
+    <record id="reading_pharmacy1_mid" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_pharmacy1"/>
+        <field name="reading_date">2026-10-15</field>
+        <field name="value">55.0</field>
+    </record>
+    <record id="reading_pharmacy1_end" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_pharmacy1"/>
+        <field name="reading_date">2026-11-01</field>
+        <field name="value">60</field>
+    </record>
+    <record id="meter_school" model="heat.meter">
+        <field name="name">Meter school</field>
+        <field name="serial_number">DEMO-SCHOOL</field>
+        <field name="meter_type">main</field>
+        <field name="node_id" ref="node_school"/>
+        <field name="controller_user_id" ref="base.user_admin"/>
+        <field name="installation_date">2026-01-01</field>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="reading_school_start" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_school"/>
+        <field name="reading_date">2026-10-01</field>
+        <field name="value">300</field>
+    </record>
+    <record id="reading_school_mid" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_school"/>
+        <field name="reading_date">2026-10-15</field>
+        <field name="value">320.0</field>
+    </record>
+    <record id="reading_school_end" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_school"/>
+        <field name="reading_date">2026-11-01</field>
+        <field name="value">340</field>
+    </record>
+    <record id="meter_church" model="heat.meter">
+        <field name="name">Meter church</field>
+        <field name="serial_number">DEMO-CHURCH</field>
+        <field name="meter_type">main</field>
+        <field name="node_id" ref="node_church"/>
+        <field name="controller_user_id" ref="base.user_admin"/>
+        <field name="installation_date">2026-01-01</field>
+        <field name="company_id" ref="company_heat_demo"/>
+    </record>
+    <record id="reading_church_start" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_church"/>
+        <field name="reading_date">2026-10-01</field>
+        <field name="value">100</field>
+    </record>
+    <record id="reading_church_mid" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_church"/>
+        <field name="reading_date">2026-10-15</field>
+        <field name="value">110.0</field>
+    </record>
+    <record id="reading_church_end" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_church"/>
+        <field name="reading_date">2026-11-01</field>
+        <field name="value">120</field>
+    </record>
+    <record id="tariff_budget_2025" model="heat.tariff">
+        <field name="category_id" ref="category_budget"/>
+        <field name="company_id" ref="company_heat_demo"/>
+        <field name="currency_id" ref="base.UAH"/>
+        <field name="date_from">2025-01-01</field>
+        <field name="date_to">2025-12-31</field>
+        <field name="price_per_gcal">1400</field>
+    </record>
+    <record id="tariff_other_2025" model="heat.tariff">
+        <field name="category_id" ref="category_other"/>
+        <field name="company_id" ref="company_heat_demo"/>
+        <field name="currency_id" ref="base.UAH"/>
+        <field name="date_from">2025-01-01</field>
+        <field name="date_to">2025-12-31</field>
+        <field name="price_per_gcal">1900</field>
+    </record>
+    <record id="reading_school_december" model="heat.meter.reading">
+        <field name="meter_id" ref="meter_school"/>
+        <field name="reading_date">2026-12-01</field>
+        <field name="value">380</field>
+    </record>
+</odoo>

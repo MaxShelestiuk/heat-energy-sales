@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_account_move_heat" model="ir.ui.view">
+        <field name="name">account.move.heat.bill</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_heat_bill" type="object" string="Heat Bill" class="oe_stat_button" icon="fa-fire" invisible="not heat_bill_id" groups="heat_energy_sales.group_heat_user">
+                    <field name="heat_bill_id" invisible="1"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

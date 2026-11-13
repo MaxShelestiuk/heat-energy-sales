@@ -1,0 +1,1595 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* heat_energy_sales
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-05 07:02+0000\n"
+"PO-Revision-Date: 2026-11-05 07:02+0000\n"
+"Last-Translator: Heat Energy Sales contributors\n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/tariff.py:0
+msgid "%(category)s: %(start)s — %(end)s"
+msgstr "%(category)s: %(start)s — %(end)s"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "%(object)s — %(period)s"
+msgstr "%(object)s — %(period)s"
+
+#. module: heat_energy_sales
+#: model:ir.actions.report,print_report_name:heat_energy_sales.action_report_heat_bill
+msgid "'Heat Bill - %s' % object.name"
+msgstr "'Нарахування за тепло - %s' % object.name"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "<strong>Accounting invoice:</strong>"
+msgstr "<strong>Бухгалтерський рахунок:</strong>"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "<strong>Consumer:</strong>"
+msgstr "<strong>Споживач:</strong>"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "<strong>Contract:</strong>"
+msgstr "<strong>Договір:</strong>"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+msgid "<strong>Period:</strong>"
+msgstr "<strong>Період:</strong>"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid ""
+"<strong>Period:</strong>\n"
+"                                    <br/>"
+msgstr ""
+"<strong>Період:</strong>\n"
+"                                    <br/>"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "<strong>Total excluding VAT:</strong>"
+msgstr "<strong>Разом без ПДВ:</strong>"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "<strong>Energy consumed:</strong>"
+msgstr "<strong>Спожито енергії:</strong>"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "A bill must have calculated lines and an audit before approval."
+msgstr ""
+"Перед затвердженням нарахування повинно мати розраховані рядки та журнал "
+"розрахунку."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "A bill with an accounting invoice cannot return to draft."
+msgstr "Нарахування з бухгалтерським рахунком не можна повернути до чернетки."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "A calculated line no longer matches the node audit."
+msgstr "Розрахований рядок більше не відповідає журналу вузла."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "A cancellation reason is required."
+msgstr "Потрібно вказати причину скасування."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid ""
+"A companion bill is approved or issued; its node balance cannot be broken."
+msgstr ""
+"Пов’язане нарахування затверджене або виставлене; баланс вузла не можна "
+"порушувати."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_meter_reading_nonnegative
+msgid "A cumulative reading cannot be negative."
+msgstr "Накопичувальний показник не може бути від’ємним."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/res_partner.py:0
+msgid "A heat consumer must have a category."
+msgstr "Споживач тепла повинен мати категорію."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/res_partner.py:0
+msgid "A heat contract requires a heat consumer."
+msgstr "Договір теплопостачання потребує споживача тепла."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_meter_type_object
+msgid "A main meter has no object; a submeter requires an object."
+msgstr "Ввідний лічильник не має об’єкта; сублічильник потребує об’єкта."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter.py:0
+msgid "A meter with readings cannot change its node, object, type or company."
+msgstr ""
+"Для лічильника з показниками не можна змінити вузол, об’єкт, тип або "
+"компанію."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_meter_main_active_unique
+msgid "A node can have only one active main meter."
+msgstr "Вузол може мати лише один активний ввідний лічильник."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_bill_monthly_unique
+msgid "A non-cancelled heat bill already exists for this consumer and month."
+msgstr "Для цього споживача та місяця вже існує нескасоване нарахування."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "A positive residual requires unmetered objects with heated volume."
+msgstr ""
+"Додатний залишок потребує об’єктів без лічильників з опалюваним об’ємом."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter_reading.py:0
+msgid "A reading cannot precede the meter installation date."
+msgstr "Дата показника не може передувати встановленню лічильника."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_bill_line_object_month_unique
+msgid "A supply object can be billed only once per company and month."
+msgstr "Об’єкт можна нарахувати лише один раз за місяць у межах компанії."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__account_move_id
+msgid "Account Move"
+msgstr "Бухгалтерський запис"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+msgid "Accounting Invoice"
+msgstr "Бухгалтерський рахунок"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__account_move_ids
+msgid "Accounting Invoices"
+msgstr "Бухгалтерські рахунки"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__account_move_state
+msgid "Accounting Status"
+msgstr "Стан бухгалтерського рахунку"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__active
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__active
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__active
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__active
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__active
+msgid "Active"
+msgstr "Активний"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__has_heat_contract
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__has_heat_contract
+msgid "Active Heat Contract"
+msgstr "Чинний договір теплопостачання"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/tariff.py:0
+msgid ""
+"Active tariff periods cannot overlap for the same category and company."
+msgstr ""
+"Періоди активних тарифів однієї категорії та компанії не можуть "
+"перетинатися."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__actual_consumer_id
+msgid "Actual Consumer"
+msgstr "Фактичний споживач"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+msgid "Actual consumer"
+msgstr "Фактичний споживач"
+
+#. module: heat_energy_sales
+#: model:res.groups,name:heat_energy_sales.group_heat_admin
+msgid "Administrator"
+msgstr "Адміністратор"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__allocation_share
+msgid "Allocation Share"
+msgstr "Частка розподілу"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Allocation rounding produced a negative quantity."
+msgstr "Округлення розподілу дало від’ємну кількість."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bills
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "Amount"
+msgstr "Сума"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__amount_untaxed
+msgid "Amount Untaxed"
+msgstr "Сума без податків"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/account_move.py:0
+msgid "An invoice linked to a heat bill cannot be deleted."
+msgstr "Рахунок, пов’язаний з нарахуванням за тепло, не можна видалити."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_meter_sub_active_unique
+msgid "An object can have only one active submeter."
+msgstr "Об’єкт може мати лише один активний сублічильник."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_bill_line_object_unique
+msgid "An object can occur only once in a heat bill."
+msgstr "Об’єкт може зустрічатися в нарахуванні лише один раз."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+msgid "Approve"
+msgstr "Затвердити"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_bill__state__approved
+msgid "Approved"
+msgstr "Затверджено"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__approved_at
+msgid "Approved At"
+msgstr "Дата затвердження"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/supply_node.py:0
+msgid "Assign the main meter from the meter form."
+msgstr "Призначте ввідний лічильник у формі лічильника."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/supply_object.py:0
+msgid "Assign the object meter from the meter form."
+msgstr "Призначте лічильник об’єкта у формі лічильника."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+msgid "Audit"
+msgstr "Аудит"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__bill_id
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bills
+msgid "Bill"
+msgstr "Нарахування"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_bill_line
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_bill_lines
+msgid "Bill Lines"
+msgstr "Рядки нарахування"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill_line.py:0
+msgid "Bill lines are generated by Calculate and cannot be entered manually."
+msgstr "Рядки формуються кнопкою «Розрахувати» і не вводяться вручну."
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_bill_analysis
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_analysis
+msgid "Billing Analysis"
+msgstr "Аналіз нарахувань"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__billing_consumer_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__billing_consumer_id
+msgid "Billing Consumer"
+msgstr "Платник"
+
+#. module: heat_energy_sales
+#: model:heat.consumer.category,name:heat_energy_sales.category_budget
+msgid "Budget"
+msgstr "Бюджетні установи"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+msgid "Calculate"
+msgstr "Розрахувати"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_bill__state__calculated
+msgid "Calculated"
+msgstr "Розраховано"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__calculated_at
+msgid "Calculated At"
+msgstr "Дата розрахунку"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill_line.py:0
+msgid "Calculated bill lines cannot be deleted manually."
+msgstr "Розраховані рядки не можна видаляти вручну."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill_line.py:0
+msgid "Calculated bill lines cannot be edited manually."
+msgstr "Розраховані рядки не можна редагувати вручну."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+msgid "Calculation"
+msgstr "Розрахунок"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__calculation_log
+msgid "Calculation Log"
+msgstr "Журнал розрахунку"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__calculation_method
+msgid "Calculation Method"
+msgstr "Метод розрахунку"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_generate_bills_wizard_form
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__cancellation_reason
+msgid "Cancellation Reason"
+msgstr "Причина скасування"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_bill__state__cancelled
+msgid "Cancelled"
+msgstr "Скасовано"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__category_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__category_id
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "Category"
+msgstr "Категорія"
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_consumer_category_code_unique
+msgid "Category code must be unique."
+msgstr "Код категорії має бути унікальним."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__code
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__code
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__code
+msgid "Code"
+msgstr "Код"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_res_company
+msgid "Companies"
+msgstr "Компанії"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__company_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__company_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__company_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__company_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__company_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__company_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__company_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__company_id
+msgid "Company"
+msgstr "Компанія"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.heat_bill_layout
+msgid "Company logo"
+msgstr "Логотип компанії"
+
+#. module: heat_energy_sales
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_config
+msgid "Configuration"
+msgstr "Налаштування"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid ""
+"Configure a sales journal for the billing company before issuing bills."
+msgstr "Перед виставленням налаштуйте журнал продажів компанії."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid ""
+"Configure an active heat service product on the company before issuing "
+"bills."
+msgstr ""
+"Перед виставленням налаштуйте активний товар послуги теплопостачання в "
+"компанії."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__consumer_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__consumer_ids
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_search
+msgid "Consumer"
+msgstr "Споживач"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_consumer_category
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_categories
+msgid "Consumer Categories"
+msgstr "Категорії споживачів"
+
+#. module: heat_energy_sales
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_consumer_contacts
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_consumers
+msgid "Consumers"
+msgstr "Споживачі"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_res_partner
+msgid "Contact"
+msgstr "Контакт"
+
+#. module: heat_energy_sales
+#: model:res.groups,name:heat_energy_sales.group_heat_controller
+msgid "Controller"
+msgstr "Контролер"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__controller_user_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__controller_user_id
+msgid "Controller User"
+msgstr "Користувач-контролер"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Create a draft bill and use the workflow buttons."
+msgstr "Створіть чернетку та використовуйте кнопки переходів стану."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__create_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__create_uid
+msgid "Created by"
+msgstr "Створив"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__create_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__create_date
+msgid "Created on"
+msgstr "Дата створення"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_reading_graph
+msgid "Cumulative Meter Readings"
+msgstr "Накопичувальні показники лічильників"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter_reading.py:0
+msgid "Cumulative readings cannot decrease between dates."
+msgstr "Накопичувальні показники не можуть зменшуватися з часом."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__currency_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__currency_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__date_from
+msgid "Date From"
+msgstr "Дата початку"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__date_to
+msgid "Date To"
+msgstr "Дата завершення"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__description
+msgid "Description"
+msgstr "Опис"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_account_move__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_report_heat_energy_sales_report_heat_bill__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_company__display_name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+msgid "Download PDF"
+msgstr "Завантажити PDF"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_bill__state__draft
+msgid "Draft"
+msgstr "Чернетка"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Draft bills already exist. Enable Replace Draft to calculate them."
+msgstr ""
+"Чернетки вже існують. Увімкніть «Замінити чернетки», щоб розрахувати їх."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__end_reading_id
+msgid "End Reading"
+msgstr "Кінцевий показник"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__energy_total_gcal
+msgid "Energy Total Gcal"
+msgstr "Загальна енергія, Гкал"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Every active submeter must belong to an active object."
+msgstr "Кожен активний сублічильник має належати активному об’єкту."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Exactly one active tariff is required for category %(category)s."
+msgstr "Для категорії %(category)s потрібен рівно один активний тариф."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid ""
+"Existing calculated, approved or issued bills cannot be replaced. Cancel and"
+" reset eligible bills first."
+msgstr ""
+"Розраховані, затверджені або виставлені нарахування не можна замінювати. "
+"Спочатку скасуйте та поверніть дозволені нарахування до чернеток."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_meter__unit__gcal
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bills
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_line_list
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_kanban
+msgid "Gcal"
+msgstr "Гкал"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_generate_bills_wizard_form
+msgid "Generate"
+msgstr "Сформувати"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_generate_bills_wizard
+#: model:ir.ui.menu,name:heat_energy_sales.menu_generate_heat_bills
+msgid "Generate Monthly Bills"
+msgstr "Сформувати місячні нарахування"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_bill_generate_wizard
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_generate_bills_wizard_form
+msgid "Generate Monthly Heat Bills"
+msgstr "Сформувати місячні нарахування за тепло"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/account_move.py:0
+#: model:ir.model.fields,field_description:heat_energy_sales.field_account_bank_statement_line__heat_bill_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_account_move__heat_bill_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__heat_bill_ids
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__heat_bill_ids
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_account_move_heat
+msgid "Heat Bill"
+msgstr "Нарахування за тепло"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__heat_bill_count
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__heat_bill_count
+msgid "Heat Bill Count"
+msgstr "Кількість нарахувань"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_bill_line
+msgid "Heat Bill Line"
+msgstr "Рядок нарахування за тепло"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_pivot
+msgid "Heat Billing Analysis"
+msgstr "Аналіз нарахувань за тепло"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_company__heat_responsible_user_id
+msgid "Heat Billing Responsible"
+msgstr "Відповідальний за нарахування"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bills
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_breadcrumbs
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_home
+msgid "Heat Bills"
+msgstr "Нарахування за тепло"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__heat_category_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__heat_category_id
+msgid "Heat Category"
+msgstr "Категорія споживача тепла"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__is_heat_consumer
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__is_heat_consumer
+msgid "Heat Consumer"
+msgstr "Споживач тепла"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_consumer_category
+msgid "Heat Consumer Category"
+msgstr "Категорія споживача тепла"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_heat_consumers
+msgid "Heat Consumers"
+msgstr "Споживачі тепла"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__heat_contract_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__heat_contract_date
+msgid "Heat Contract Date"
+msgstr "Дата договору теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__heat_contract_number
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__heat_contract_number
+msgid "Heat Contract Number"
+msgstr "Номер договору теплопостачання"
+
+#. module: heat_energy_sales
+#: model:account.account,name:heat_energy_sales.demo_receivable
+msgid "Heat Demonstration Receivable"
+msgstr "Демонстраційна дебіторська заборгованість"
+
+#. module: heat_energy_sales
+#: model:account.account,name:heat_energy_sales.demo_revenue
+msgid "Heat Demonstration Revenue"
+msgstr "Демонстраційний дохід від тепла"
+
+#. module: heat_energy_sales
+#: model:account.journal,name:heat_energy_sales.demo_journal
+msgid "Heat Demonstration Sales"
+msgstr "Демонстраційні продажі тепла"
+
+#. module: heat_energy_sales
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_root
+#: model:product.template,name:heat_energy_sales.product_heat_energy_product_template
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_company_heat
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_partner_heat
+msgid "Heat Energy"
+msgstr "Теплова енергія"
+
+#. module: heat_energy_sales
+#: model:ir.actions.report,name:heat_energy_sales.action_report_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "Heat Energy Bill"
+msgstr "Нарахування за теплову енергію"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_report_heat_energy_sales_report_heat_bill
+msgid "Heat Energy Bill Report"
+msgstr "Звіт нарахування за теплову енергію"
+
+#. module: heat_energy_sales
+#: model:ir.module.category,name:heat_energy_sales.module_category_heat
+#: model:res.groups.privilege,name:heat_energy_sales.privilege_heat
+msgid "Heat Energy Sales"
+msgstr "Збут теплової енергії"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_meter
+msgid "Heat Meter"
+msgstr "Лічильник тепла"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_meter_reading
+msgid "Heat Meter Reading"
+msgstr "Показник лічильника тепла"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__heat_object_ids
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_users__heat_object_ids
+msgid "Heat Object"
+msgstr "Об’єкт теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_company__heat_report_footer
+msgid "Heat Report Footer"
+msgstr "Нижній колонтитул звіту"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_company__heat_service_product_id
+msgid "Heat Service Product"
+msgstr "Товар послуги теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_supply_node
+msgid "Heat Supply Node"
+msgstr "Вузол теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_supply_object
+msgid "Heat Supply Object"
+msgstr "Об’єкт теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_tariff
+msgid "Heat Tariff"
+msgstr "Тариф на тепло"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Heat billing must create a draft accounting invoice."
+msgstr "Нарахування має створювати бухгалтерський рахунок у стані чернетки."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_bill_line_positive_values
+msgid ""
+"Heat quantities and allocation shares must be valid and prices/volumes "
+"positive."
+msgstr ""
+"Кількості тепла та частки розподілу мають бути коректними, а ціни й об’єми —"
+" додатними."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_bill_line__calculation_method__volume
+msgid "Heated Volume"
+msgstr "Опалюваний об’єм"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__heated_volume_m3
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__heated_volume_m3
+msgid "Heated Volume M3"
+msgstr "Опалюваний об’єм, м³"
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_supply_object_positive_volume
+msgid "Heated volume must be positive."
+msgstr "Опалюваний об’єм має бути додатним."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_account_move__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_report_heat_energy_sales_report_heat_bill__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_company__id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__installation_date
+msgid "Installation Date"
+msgstr "Дата встановлення"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__is_boundary_reading
+msgid "Is Boundary Reading"
+msgstr "Граничний показник"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+msgid "Issue"
+msgstr "Виставити"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_bill__state__issued
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_search
+msgid "Issued"
+msgstr "Виставлено"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__issued_at
+msgid "Issued At"
+msgstr "Дата виставлення"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Issued or cancelled bills cannot be edited."
+msgstr "Виставлені або скасовані нарахування не можна редагувати."
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_account_move
+msgid "Journal Entry"
+msgstr "Бухгалтерське проведення"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__write_uid
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__write_uid
+msgid "Last Updated by"
+msgstr "Останнім оновив"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__write_date
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__write_date
+msgid "Last Updated on"
+msgstr "Дата останнього оновлення"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__line_ids
+msgid "Line"
+msgstr "Рядок"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_meter__meter_type__main
+msgid "Main"
+msgstr "Ввідний"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__main_consumer_id
+msgid "Main Consumer"
+msgstr "Основний споживач"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__main_meter_id
+msgid "Main Meter"
+msgstr "Ввідний лічильник"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Main consumption is less than the sum of submeters."
+msgstr "Споживання ввідного лічильника менше суми сублічильників."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__meter_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__meter_ids
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__meter_id
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_bill_line__calculation_method__meter
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_reading_search
+msgid "Meter"
+msgstr "Лічильник"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__meter_ids
+msgid "Meter History"
+msgstr "Історія лічильника"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_meter_reading
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_readings
+msgid "Meter Readings"
+msgstr "Показники лічильників"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__meter_type
+msgid "Meter Type"
+msgstr "Тип лічильника"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter.py:0
+msgid "Meter and node must belong to the same company."
+msgstr "Лічильник і вузол мають належати одній компанії."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter.py:0
+msgid "Meter and object must belong to the same node."
+msgstr "Лічильник і об’єкт мають належати одному вузлу."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Meter consumption cannot be negative."
+msgstr "Споживання лічильника не може бути від’ємним."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_meter_serial_unique
+msgid "Meter serial number must be unique within a company."
+msgstr "Серійний номер лічильника має бути унікальним у межах компанії."
+
+#. module: heat_energy_sales
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_metering
+msgid "Metering"
+msgstr "Облік"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_meter
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_meters
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_supply_node_form
+msgid "Meters"
+msgstr "Лічильники"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "Method"
+msgstr "Метод"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Missing exact boundary reading for %(meter)s on %(start)s or %(end)s."
+msgstr ""
+"Відсутній точний граничний показник для %(meter)s на %(start)s або %(end)s."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_search
+msgid "Month"
+msgstr "Місяць"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_bill
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_bills
+msgid "Monthly Bills"
+msgstr "Місячні нарахування"
+
+#. module: heat_energy_sales
+#: model:ir.model,name:heat_energy_sales.model_heat_bill
+msgid "Monthly Heat Bill"
+msgstr "Місячне нарахування за тепло"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Monthly Heat Bills"
+msgstr "Місячні нарахування за тепло"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_graph
+msgid "Monthly Heat Consumption"
+msgstr "Місячне споживання тепла"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_reading_search
+msgid "My Readings"
+msgstr "Мої показники"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__name
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "New"
+msgstr "Нове"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "No active supply nodes are available for this calculation."
+msgstr "Для розрахунку немає активних вузлів теплопостачання."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/wizard/generate_bills_wizard.py:0
+msgid "No active supply nodes match the selected consumers."
+msgstr "Для вибраних споживачів немає активних вузлів теплопостачання."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bills
+msgid "No issued heat bills are available."
+msgstr "Виставлених нарахувань за тепло немає."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__node_ids
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__node_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__node_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__node_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__node_id
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_reading_search
+msgid "Node"
+msgstr "Вузол"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Node %(node)s has no active supply objects."
+msgstr "Вузол %(node)s не має активних об’єктів теплопостачання."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Node %(node)s requires an active main meter."
+msgstr "Вузол %(node)s потребує активного ввідного лічильника."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_supply_node_code_unique
+msgid "Node code must be unique within a company."
+msgstr "Код вузла має бути унікальним у межах компанії."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_search
+msgid "Not Cancelled"
+msgstr "Не скасовано"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__note
+msgid "Note"
+msgstr "Примітка"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__object_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__object_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__object_ids
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_reading_search
+msgid "Object"
+msgstr "Об’єкт"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "Object / actual consumer"
+msgstr "Об’єкт / фактичний споживач"
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_supply_object_code_unique
+msgid "Object code must be unique within a company."
+msgstr "Код об’єкта має бути унікальним у межах компанії."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_supply_node_form
+msgid "Objects"
+msgstr "Об’єкти"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Only Heat Sales users can run the billing workflow."
+msgstr ""
+"Лише користувачі групи збуту тепла можуть виконувати переходи станів "
+"нарахування."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter.py:0
+msgid "Only a heat administrator can assign a different controller."
+msgstr "Лише адміністратор теплопостачання може призначити іншого контролера."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Only a heat administrator can cancel approved bills."
+msgstr ""
+"Лише адміністратор теплопостачання може скасовувати затверджені нарахування."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Only draft bill details can be edited."
+msgstr "Редагувати реквізити можна лише в чернетці."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Only draft bills can be deleted."
+msgstr "Видаляти можна лише чернетки."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Only draft, calculated or approved bills can be cancelled."
+msgstr ""
+"Скасовувати можна лише чернетки, розраховані або затверджені нарахування."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_account_move_heat_bill_unique
+msgid "Only one accounting invoice may reference a heat bill."
+msgstr ""
+"На одне нарахування за тепло може посилатися лише один бухгалтерський "
+"рахунок."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_meter_reading_date_unique
+msgid "Only one reading per meter and date is allowed."
+msgstr "Дозволено лише один показник лічильника на дату."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/tariff.py:0
+msgid "Open-ended"
+msgstr "Без кінцевої дати"
+
+#. module: heat_energy_sales
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_operations
+msgid "Operations"
+msgstr "Операції"
+
+#. module: heat_energy_sales
+#: model:heat.consumer.category,name:heat_energy_sales.category_other
+msgid "Other"
+msgstr "Інші"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_object__owner_id
+msgid "Owner"
+msgstr "Власник"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.heat_bill_layout
+msgid "Page <span class=\"page\"/> / <span class=\"topage\"/>"
+msgstr "Сторінка <span class=\"page\"/> / <span class=\"topage\"/>"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bills
+msgid "Period"
+msgstr "Період"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__period_end
+msgid "Period End"
+msgstr "Кінець періоду"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__period_start
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__period_start
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__period_start
+msgid "Period Start"
+msgstr "Початок періоду"
+
+#. module: heat_energy_sales
+#: model:heat.consumer.category,name:heat_energy_sales.category_population
+msgid "Population"
+msgstr "Населення"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_bill
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.report_heat_bill
+msgid "Price / Gcal"
+msgstr "Ціна / Гкал"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_tariff__price_per_gcal
+msgid "Price Per Gcal"
+msgstr "Ціна за Гкал"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__price_unit
+msgid "Price Unit"
+msgstr "Ціна одиниці"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__quantity_gcal
+msgid "Quantity Gcal"
+msgstr "Кількість, Гкал"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__reading_ids
+msgid "Reading"
+msgstr "Показник"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__reading_date
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_reading_search
+msgid "Reading Date"
+msgstr "Дата показника"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_form
+msgid "Readings"
+msgstr "Показники"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter_reading.py:0
+msgid ""
+"Readings used by approved or issued bills cannot be changed or deleted."
+msgstr ""
+"Показники, використані у затверджених або виставлених нарахуваннях, не можна"
+" змінювати чи видаляти."
+
+#. module: heat_energy_sales
+#: model:heat.consumer.category,name:heat_energy_sales.category_religious
+msgid "Religious"
+msgstr "Релігійні організації"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_generate_wizard__replace_draft
+msgid "Replace Draft"
+msgstr "Замінити чернетки"
+
+#. module: heat_energy_sales
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_reporting
+msgid "Reporting"
+msgstr "Звітність"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_form
+msgid "Reset to Draft"
+msgstr "Повернути до чернетки"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__responsible_user_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_supply_node__responsible_user_id
+msgid "Responsible User"
+msgstr "Відповідальний користувач"
+
+#. module: heat_energy_sales
+#: model:res.groups,name:heat_energy_sales.group_heat_sales
+msgid "Sales"
+msgstr "Збут"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/wizard/generate_bills_wizard.py:0
+msgid "Select active nodes belonging to the billing company."
+msgstr "Виберіть активні вузли компанії нарахування."
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_generate_bills_wizard_form
+msgid ""
+"Selected nodes and consumers are expanded to include all connected payers "
+"and nodes, keeping monthly bills and node balances complete."
+msgstr ""
+"До вибраних вузлів і споживачів додаються всі пов’язані платники та вузли "
+"для повноти місячних нарахувань і балансів вузлів."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__sequence
+msgid "Sequence"
+msgstr "Послідовність"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__serial_number
+msgid "Serial Number"
+msgstr "Серійний номер"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__source_meter_id
+msgid "Source Meter"
+msgstr "Вихідний лічильник"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__source_reading_ids
+msgid "Source Reading"
+msgstr "Вихідний показник"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid ""
+"Source readings have changed. Cancel and recalculate the affected bills."
+msgstr ""
+"Вихідні показники змінилися. Скасуйте та перерахуйте відповідні нарахування."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__start_reading_id
+msgid "Start Reading"
+msgstr "Початковий показник"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill__state
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__bill_state
+msgid "State"
+msgstr "Стан"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_bill_search
+msgid "Status"
+msgstr "Статус"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields.selection,name:heat_energy_sales.selection__heat_meter__meter_type__sub
+msgid "Submeter"
+msgstr "Сублічильник"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__subtotal
+msgid "Subtotal"
+msgstr "Проміжна сума"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_supply_node
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_nodes
+msgid "Supply Nodes"
+msgstr "Вузли теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__supply_object_id
+msgid "Supply Object"
+msgstr "Об’єкт теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_supply_object
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_objects
+msgid "Supply Objects"
+msgstr "Об’єкти теплопостачання"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_bill_line__tariff_id
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_consumer_category__tariff_ids
+msgid "Tariff"
+msgstr "Тариф"
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_tariff_valid_dates
+msgid "Tariff end date cannot precede its start date."
+msgstr "Кінець дії тарифу не може передувати початку."
+
+#. module: heat_energy_sales
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_tariff_positive_price
+msgid "Tariff price must be positive."
+msgstr "Ціна тарифу має бути додатною."
+
+#. module: heat_energy_sales
+#: model:ir.actions.act_window,name:heat_energy_sales.action_tariff
+#: model:ir.ui.menu,name:heat_energy_sales.menu_heat_tariffs
+msgid "Tariffs"
+msgstr "Тарифи"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.heat_bill_layout
+msgid "Tax ID:"
+msgstr "Податковий номер:"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "The billing company is not in your allowed companies."
+msgstr "Компанія нарахування не входить до переліку дозволених вам компаній."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/supply_object.py:0
+msgid "The billing consumer is determined by the owner's contract."
+msgstr "Платник визначається за договором власника."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+#: model:ir.model.constraint,message:heat_energy_sales.constraint_heat_bill_month_start
+msgid "The billing period must start on the first day of a month."
+msgstr "Період нарахування має починатися з першого дня місяця."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/res_company.py:0
+msgid "The heat billing product must be a service."
+msgstr "Товар теплопостачання має бути послугою."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "The heat service product must belong to the billing company."
+msgstr "Товар послуги теплопостачання має належати компанії нарахування."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/account_move.py:0
+msgid ""
+"The invoice must match its approved heat bill's company, consumer and "
+"currency."
+msgstr ""
+"Компанія, споживач і валюта рахунку мають відповідати затвердженому "
+"нарахуванню."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill_line.py:0
+msgid "The line payer must match the bill consumer."
+msgstr "Платник рядка має відповідати споживачу нарахування."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/supply_node.py:0
+msgid ""
+"The main consumer must have a heat category and an active heat contract."
+msgstr ""
+"Основний споживач повинен мати категорію та чинний договір теплопостачання."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid ""
+"The node balance requires all companion bills to remain calculated, approved"
+" or issued."
+msgstr ""
+"Баланс вузла потребує, щоб усі пов’язані нарахування залишалися "
+"розрахованими, затвердженими або виставленими."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "The node energy balance does not match its main meter."
+msgstr "Баланс енергії вузла не відповідає ввідному лічильнику."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/supply_object.py:0
+msgid "The object owner must be a heat consumer with a category."
+msgstr "Власник об’єкта має бути споживачем тепла з категорією."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/account_move.py:0
+msgid "The originating heat bill link cannot be changed."
+msgstr "Посилання на вихідне нарахування за тепло не можна змінювати."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "The tariff currency must match the billing company currency."
+msgstr "Валюта тарифу має відповідати валюті компанії нарахування."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "This action requires bills in the %(state)s state."
+msgstr "Ця дія потребує нарахувань у стані %(state)s."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "This heat bill already has an accounting invoice."
+msgstr "Це нарахування вже має бухгалтерський рахунок."
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter__unit
+msgid "Unit"
+msgstr "Одиниця"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/account_move.py:0
+msgid "Use Issue on the heat bill to create its accounting invoice."
+msgstr ""
+"Для створення бухгалтерського рахунку натисніть «Виставити» в нарахуванні."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "Use the workflow buttons to change calculated bill data."
+msgstr "Для зміни розрахованих даних використовуйте кнопки переходів стану."
+
+#. module: heat_energy_sales
+#: model:res.groups,name:heat_energy_sales.group_heat_user
+msgid "User"
+msgstr "Користувач"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__value
+msgid "Value"
+msgstr "Значення"
+
+#. module: heat_energy_sales
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.portal_heat_home
+msgid "View your monthly heat consumption and download bills"
+msgstr "Переглядайте місячне споживання тепла та завантажуйте нарахування"
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/meter_reading.py:0
+msgid "You can only record readings for your own assigned meters."
+msgstr "Ви можете вносити показники лише для призначених вам лічильників."
+
+#. module: heat_energy_sales
+#. odoo-python
+#: code:addons/heat_energy_sales/models/heat_bill.py:0
+msgid "id"
+msgstr "id"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,field_description:heat_energy_sales.field_heat_meter_reading__consumption_delta
+#: model_terms:ir.ui.view,arch_db:heat_energy_sales.view_meter_reading_list
+msgid "Consumption Delta"
+msgstr "Різниця споживання"
+
+#. module: heat_energy_sales
+#: model:ir.model.fields,help:heat_energy_sales.field_heat_meter_reading__consumption_delta
+msgid ""
+"On a reading, this is the difference from the previous visible reading. In a"
+" grouped list, it is the latest selected value minus the earliest selected "
+"value for each meter."
+msgstr ""
+"Для окремого показника це різниця з попереднім видимим показником. У "
+"згрупованому списку це різниця між найновішим і найстарішим вибраними "
+"значеннями для кожного лічильника."

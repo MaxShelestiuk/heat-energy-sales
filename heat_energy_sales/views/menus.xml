@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="action_heat_consumers" model="ir.actions.act_window">
+        <field name="name">Heat Consumers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_heat_consumer', '=', True)]</field>
+        <field name="context">{'default_is_heat_consumer': True}</field>
+    </record>
+    <menuitem id="menu_heat_root" name="Heat Energy" groups="group_heat_user" web_icon="heat_energy_sales,static/description/icon.png"/>
+    <menuitem id="menu_heat_consumers" name="Consumers" parent="menu_heat_root" sequence="10"/>
+    <menuitem id="menu_heat_consumer_contacts" name="Consumers" parent="menu_heat_consumers" action="action_heat_consumers" sequence="1"/>
+    <menuitem id="menu_heat_config" name="Configuration" parent="menu_heat_root" sequence="20"/>
+    <menuitem id="menu_heat_categories" name="Consumer Categories" parent="menu_heat_config" action="action_consumer_category" sequence="10"/>
+    <menuitem id="menu_heat_tariffs" name="Tariffs" parent="menu_heat_config" action="action_tariff" sequence="20"/>
+    <menuitem id="menu_heat_nodes" name="Supply Nodes" parent="menu_heat_consumers" action="action_supply_node" sequence="11"/>
+    <menuitem id="menu_heat_objects" name="Supply Objects" parent="menu_heat_consumers" action="action_supply_object" sequence="12"/>
+    <menuitem id="menu_heat_metering" name="Metering" parent="menu_heat_root" sequence="15"/>
+    <menuitem id="menu_heat_meters" name="Meters" parent="menu_heat_metering" action="action_meter"/>
+    <menuitem id="menu_heat_readings" name="Meter Readings" parent="menu_heat_metering" action="action_meter_reading"/>
+    <menuitem id="menu_heat_operations" name="Operations" parent="menu_heat_root" sequence="1"/>
+    <menuitem id="menu_heat_bills" name="Monthly Bills" parent="menu_heat_operations" action="action_bill" sequence="10"/>
+    <menuitem id="menu_heat_bill_lines" name="Bill Lines" parent="menu_heat_operations" action="action_bill_line" sequence="20"/>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_generate_bills_wizard_form" model="ir.ui.view">
+        <field name="name">heat.bill.generate.wizard.form</field>
+        <field name="model">heat.bill.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Monthly Heat Bills">
+                <p>Selected nodes and consumers are expanded to include all connected payers and nodes, keeping monthly bills and node balances complete.</p>
+                <group>
+                    <field name="company_id"/>
+                    <field name="period_start"/>
+                    <field name="node_ids" widget="many2many_tags"/>
+                    <field name="consumer_ids" widget="many2many_tags"/>
+                    <field name="replace_draft"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object" string="Generate" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_generate_bills_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Monthly Bills</field>
+        <field name="res_model">heat.bill.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_generate_heat_bills" name="Generate Monthly Bills" parent="menu_heat_operations" action="action_generate_bills_wizard" sequence="30" groups="group_heat_sales"/>
+</odoo>

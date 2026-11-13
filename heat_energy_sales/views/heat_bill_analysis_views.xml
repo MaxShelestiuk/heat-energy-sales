@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_bill_search" model="ir.ui.view">
+        <field name="name">heat.bill.search</field>
+        <field name="model">heat.bill</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="consumer_id"/>
+                <field name="responsible_user_id"/>
+                <filter name="issued" string="Issued" domain="[('state', '=', 'issued')]"/>
+                <filter name="active_bills" string="Not Cancelled" domain="[('state', '!=', 'cancelled')]"/>
+                <filter name="by_month" string="Month" context="{'group_by': 'period_start:month'}"/>
+                <filter name="by_consumer" string="Consumer" context="{'group_by': 'consumer_id'}"/>
+                <filter name="by_state" string="Status" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="view_bill_kanban" model="ir.ui.view">
+        <field name="name">heat.bill.kanban</field>
+        <field name="model">heat.bill</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" records_draggable="false" quick_create="false">
+                <field name="currency_id"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="fw-bold">
+                            <field name="name"/>
+                        </div>
+                        <field name="consumer_id"/>
+                        <div>
+                            <field name="period_start"/>
+                        </div>
+                        <div>
+                            <field name="energy_total_gcal"/> Gcal</div>
+                        <div class="fw-bold">
+                            <field name="amount_untaxed" widget="monetary"/>
+                        </div>
+                        <field name="state" widget="badge"/>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="view_bill_pivot" model="ir.ui.view">
+        <field name="name">heat.bill.pivot</field>
+        <field name="model">heat.bill</field>
+        <field name="arch" type="xml">
+            <pivot string="Heat Billing Analysis">
+                <field name="consumer_id" type="row"/>
+                <field name="period_start" type="col" interval="month"/>
+                <field name="energy_total_gcal" type="measure"/>
+                <field name="amount_untaxed" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="view_bill_graph" model="ir.ui.view">
+        <field name="name">heat.bill.graph</field>
+        <field name="model">heat.bill</field>
+        <field name="arch" type="xml">
+            <graph string="Monthly Heat Consumption" type="bar">
+                <field name="period_start" interval="month"/>
+                <field name="consumer_id"/>
+                <field name="energy_total_gcal" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="action_bill" model="ir.actions.act_window">
+        <field name="view_mode">list,form,kanban,pivot,graph</field>
+    </record>
+    <record id="action_bill_analysis" model="ir.actions.act_window">
+        <field name="name">Billing Analysis</field>
+        <field name="res_model">heat.bill</field>
+        <field name="view_mode">pivot,graph,list,form</field>
+        <field name="domain">[('state', 'in', ['calculated', 'approved', 'issued'])]</field>
+        <field name="context">{'search_default_by_month': 1}</field>
+    </record>
+    <menuitem id="menu_heat_reporting" name="Reporting" parent="menu_heat_root" sequence="30"/>
+    <menuitem id="menu_heat_analysis" name="Billing Analysis" parent="menu_heat_reporting" action="action_bill_analysis"/>
+</odoo>

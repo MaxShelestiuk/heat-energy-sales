@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_supply_node_list" model="ir.ui.view">
+        <field name="name">heat.supply.node.list</field>
+        <field name="model">heat.supply.node</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="company_id"/>
+                <field name="main_consumer_id"/>
+                <field name="main_meter_id"/>
+                <field name="responsible_user_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_supply_node_form" model="ir.ui.view">
+        <field name="name">heat.supply.node.form</field>
+        <field name="model">heat.supply.node</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="company_id"/>
+                        <field name="main_consumer_id"/>
+                        <field name="main_meter_id"/>
+                        <field name="responsible_user_id"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Objects">
+                            <field name="object_ids" readonly="1"/>
+                        </page>
+                        <page string="Meters">
+                            <field name="meter_ids" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_supply_node" model="ir.actions.act_window">
+        <field name="name">Supply Nodes</field>
+        <field name="res_model">heat.supply.node</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_supply_object_list" model="ir.ui.view">
+        <field name="name">heat.supply.object.list</field>
+        <field name="model">heat.supply.object</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="node_id"/>
+                <field name="owner_id"/>
+                <field name="heated_volume_m3"/>
+                <field name="meter_id"/>
+                <field name="billing_consumer_id"/>
+                <field name="company_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_supply_object_form" model="ir.ui.view">
+        <field name="name">heat.supply.object.form</field>
+        <field name="model">heat.supply.object</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="node_id"/>
+                        <field name="owner_id"/>
+                        <field name="heated_volume_m3"/>
+                        <field name="meter_id"/>
+                        <field name="billing_consumer_id"/>
+                        <field name="company_id"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_supply_object" model="ir.actions.act_window">
+        <field name="name">Supply Objects</field>
+        <field name="res_model">heat.supply.object</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_meter_list" model="ir.ui.view">
+        <field name="name">heat.meter.list</field>
+        <field name="model">heat.meter</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="serial_number"/>
+                <field name="meter_type"/>
+                <field name="node_id"/>
+                <field name="object_id"/>
+                <field name="controller_user_id"/>
+                <field name="installation_date"/>
+                <field name="unit"/>
+                <field name="company_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_meter_form" model="ir.ui.view">
+        <field name="name">heat.meter.form</field>
+        <field name="model">heat.meter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="serial_number"/>
+                        <field name="meter_type"/>
+                        <field name="node_id"/>
+                        <field name="object_id"/>
+                        <field name="controller_user_id"/>
+                        <field name="installation_date"/>
+                        <field name="unit"/>
+                        <field name="company_id"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Readings">
+                            <field name="reading_ids" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_meter" model="ir.actions.act_window">
+        <field name="name">Meters</field>
+        <field name="res_model">heat.meter</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_meter_reading_list" model="ir.ui.view">
+        <field name="name">heat.meter.reading.list</field>
+        <field name="model">heat.meter.reading</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="meter_id"/>
+                <field name="node_id" optional="show"/>
+                <field name="object_id" optional="show"/>
+                <field name="reading_date"/>
+                <field name="value"/>
+                <field name="consumption_delta" optional="hide" sum="Consumption Delta"/>
+                <field name="controller_user_id"/>
+                <field name="note"/>
+                <field name="company_id" optional="hide"/>
+                <field name="is_boundary_reading"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_meter_reading_form" model="ir.ui.view">
+        <field name="name">heat.meter.reading.form</field>
+        <field name="model">heat.meter.reading</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="meter_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                        <field name="node_id"/>
+                        <field name="object_id"/>
+                        <field name="reading_date"/>
+                        <field name="value"/>
+                        <field name="consumption_delta"/>
+                        <field name="controller_user_id"/>
+                        <field name="note"/>
+                        <field name="company_id"/>
+                        <field name="is_boundary_reading"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_meter_reading" model="ir.actions.act_window">
+        <field name="name">Meter Readings</field>
+        <field name="res_model">heat.meter.reading</field>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+    <record id="view_meter_reading_search" model="ir.ui.view">
+        <field name="name">heat.meter.reading.search</field>
+        <field name="model">heat.meter.reading</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="meter_id"/>
+                <field name="node_id"/>
+                <field name="object_id"/>
+                <field name="reading_date"/>
+                <field name="controller_user_id"/>
+                <filter name="my_readings" string="My Readings" domain="[('controller_user_id', '=', uid)]"/>
+                <separator/>
+                <filter name="reading_date_filter" string="Reading Date" date="reading_date"/>
+                <separator/>
+                <filter name="by_meter" string="Meter" context="{'group_by': 'meter_id'}"/>
+                <filter name="by_node" string="Node" context="{'group_by': 'node_id'}"/>
+                <filter name="by_object" string="Object" context="{'group_by': 'object_id'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="view_meter_reading_graph" model="ir.ui.view">
+        <field name="name">heat.meter.reading.graph</field>
+        <field name="model">heat.meter.reading</field>
+        <field name="arch" type="xml">
+            <graph string="Cumulative Meter Readings" type="line">
+                <field name="reading_date" interval="day"/>
+                <field name="meter_id"/>
+                <field name="value" type="measure"/>
+            </graph>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Heat Energy Sales for Odoo 19</title>
+    <style>body {
+        margin: 0;
+        background: #f6f3eb;
+        color: #132a2f;
+        font: 18px/1.6 system-ui, sans-serif
+    }
+
+    main {
+        max-width: 1100px;
+        margin: auto;
+        padding: 64px 28px
+    }
+
+    h1 {
+        font-size: 48px;
+        line-height: 1.1;
+        color: #087f78
+    }
+
+    h2 {
+        margin-top: 42px
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        margin: 30px 0
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px
+    }
+
+    .card {
+        background: white;
+        padding: 24px;
+        border-radius: 16px
+    }
+
+    code {
+        background: #e8f3f1;
+        padding: 3px 6px
+    }
+
+    footer {
+        border-top: 1px solid #ccd9d6;
+        margin-top: 42px;
+        padding-top: 20px;
+        color: #587078
+    }</style>
+</head>
+<body>
+<main><p>ODOO 19 · HEAT ENERGY SALES</p>
+    <h1>From meter readings<br>to a balanced monthly bill.</h1>
+    <p>Keep the physical energy balance intact while separating the actual consumer's tariff from the contractual
+        payer.</p><img src="overview.png"
+                       alt="Hospital example: 100 Gcal is allocated into an 85 Gcal hospital bill and a 15 Gcal pharmacy bill">
+    <div class="cards">
+        <section class="card"><h2>Metering</h2>
+            <p>Exact cumulative readings, controller assignments and chronological validation.</p></section>
+        <section class="card"><h2>Billing</h2>
+            <p>Volume allocation, tariff snapshots, guarded approval and one linked draft accounting invoice.</p>
+        </section>
+        <section class="card"><h2>Consumer access</h2>
+            <p>Private portal, downloadable PDF bills and monthly consumption analytics.</p></section>
+    </div>
+    <h2>A complete monthly workflow</h2>
+    <p>Draft → Calculated → Approved → Issued. Eligible documents may be cancelled and reset before accounting
+        issuance.</p>
+    <h2>Built for review</h2>
+    <p>Eight persistent models, a batch wizard, isolated company data, English/Ukrainian interface and business, HTTP
+        and accounting tests. Demo data reproduces the hospital example and every workflow state.</p>
+    <h2>Deliberate limits</h2>
+    <p>No estimated readings, mid-month meter replacements, network loss modelling, automatic invoice posting, payments
+        or debt collection.</p>
+    <footer>LGPL-3 · Source and installation instructions are included in README.rst.</footer>
+</main>
+</body>
+</html>

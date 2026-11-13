@@ -1,0 +1,203 @@
+from odoo.exceptions import AccessError, UserError, ValidationError
+from odoo.tests import tagged
+from odoo.tools import mute_logger
+from psycopg2 import IntegrityError
+
+from .common_billing import HeatBillingCase
+
+
+@tagged("post_install", "-at_install")
+class TestHeatBilling(HeatBillingCase):
+    """Prove node balance, payer routing, snapshots and the guarded workflow."""
+
+    def test_hospital_balance_and_tariff_snapshot(self):
+        """The hospital pays 85 Gcal and Pharmacy B pays 15 at owner tariffs."""
+        bills = self._calculate()
+        hospital = bills.filtered(lambda b: b.consumer_id == self.hospital)
+        pharmacy = bills - hospital
+        self.assertEqual(hospital.energy_total_gcal, 85)
+        self.assertEqual(pharmacy.energy_total_gcal, 15)
+        self.assertEqual(sum(bills.mapped("energy_total_gcal")), 100)
+        self.assertEqual(sorted(bills.line_ids.mapped("quantity_gcal")), [10, 15, 15, 30, 30])
+        line = hospital.line_ids.filtered(lambda row: row.actual_consumer_id == self.pharmacy_a)
+        self.assertEqual(line.price_unit, 2000)
+        self.assertEqual(line.category_id, self.other)
+        self.assertEqual(hospital.amount_untaxed, 132500)
+        self.tariffs[1].price_per_gcal = 2500
+        self.assertEqual(line.price_unit, 2000)
+        bills.action_approve()
+        self.assertEqual(set(bills.mapped("state")), {"approved"})
+
+    def test_missing_boundary_atomic(self):
+        """Intermediate readings cannot substitute for an exact month boundary."""
+        self.readings.filtered(
+            lambda r: r.meter_id == self.meters[0] and str(r.reading_date) == "2026-11-01"
+        ).unlink()
+        bill = self.Bill.create({"consumer_id": self.hospital.id, "period_start": self.period})
+        with self.assertRaisesRegex(UserError, "Missing exact boundary"):
+            bill.action_calculate()
+        self.assertEqual(bill.state, "draft")
+        self.assertFalse(bill.line_ids)
+        self.assertFalse(self.Bill.search([("consumer_id", "=", self.pharmacy_b.id)]))
+
+    def test_negative_residual(self):
+        """Submeters cannot claim more energy than the main inlet supplies."""
+        self.readings.filtered(
+            lambda r: r.meter_id == self.meters[1] and str(r.reading_date) == "2026-11-01"
+        ).value = 320
+        with self.assertRaisesRegex(UserError, "less than the sum"), self.cr.savepoint():
+            self._calculate()
+
+    def test_residual_without_unmetered_objects(self):
+        """A remainder cannot disappear when all active objects are metered."""
+        self.objects.filtered(lambda obj: not obj.meter_id).active = False
+        with self.assertRaisesRegex(UserError, "positive residual"), self.cr.savepoint():
+            self._calculate()
+
+    def test_missing_tariff(self):
+        """Every actual owner category needs exactly one effective tariff."""
+        self.tariffs[1].active = False
+        with self.assertRaisesRegex(UserError, "Exactly one active tariff"), self.cr.savepoint():
+            self._calculate()
+
+    def test_source_change_and_approval_lock(self):
+        """Approvals detect stale sources and then freeze all node boundaries."""
+        bills = self._calculate()
+        last = self.readings.filtered(
+            lambda r: r.meter_id == self.meters[0] and str(r.reading_date) == "2026-11-01"
+        )
+        last.value = 1101
+        with self.assertRaisesRegex(UserError, "Source readings have changed"):
+            bills.action_approve()
+        last.value = 1100
+        bills[:1].action_approve()
+        for reading in bills.source_reading_ids:
+            with self.assertRaisesRegex(ValidationError, "approved or issued"), self.cr.savepoint():
+                reading.write({"note": "Changed"})
+            with self.assertRaisesRegex(ValidationError, "approved or issued"), self.cr.savepoint():
+                reading.unlink()
+
+    def test_no_state_or_line_edit_bypass(self):
+        """RPC/context flags cannot manufacture an approved state or snapshots."""
+        bill = self.Bill.create({"consumer_id": self.hospital.id, "period_start": self.period})
+        with self.assertRaisesRegex(UserError, "calculated state"):
+            bill.action_approve()
+        with self.assertRaisesRegex(UserError, "workflow buttons"):
+            bill.with_context(heat_internal=True).write({"state": "issued"})
+        with self.assertRaisesRegex(UserError, "draft bill"):
+            self.Bill.create(
+                {
+                    "consumer_id": self.pharmacy_b.id,
+                    "period_start": self.period,
+                    "state": "approved",
+                }
+            )
+        bill.action_calculate()
+        with self.assertRaisesRegex(UserError, "cannot be edited"):
+            bill.line_ids[:1].write({"quantity_gcal": 99})
+        with self.assertRaisesRegex(UserError, "cannot be deleted"):
+            bill.line_ids[:1].unlink()
+        with self.assertRaisesRegex(UserError, "generated by Calculate"):
+            self.env["heat.bill.line"].create({"bill_id": bill.id})
+
+    @mute_logger("odoo.sql_db")
+    def test_unique_month_and_first_day(self):
+        """A database index also protects competing monthly document creation."""
+        values = {"consumer_id": self.hospital.id, "period_start": self.period}
+        bill = self.Bill.create(values)
+        with self.assertRaises(IntegrityError), self.cr.savepoint():
+            self.Bill.create(values)
+        with self.assertRaises(IntegrityError), self.cr.savepoint():
+            self.Bill.create(dict(values, period_start="2026-10-02"))
+        bill.cancellation_reason = "Duplicate attempt test"
+        bill.action_cancel()
+        self.Bill.create(values)
+        with self.assertRaises(IntegrityError), self.cr.savepoint():
+            bill.action_reset_draft()
+        self.assertEqual(bill.state, "cancelled")
+
+    def test_cancel_reset_and_companion_balance(self):
+        """A missing companion blocks approval, while reset clears old sources."""
+        bills = self._calculate()
+        cancelled = bills[:1]
+        with self.assertRaisesRegex(UserError, "cancellation reason"):
+            cancelled.action_cancel()
+        cancelled.cancellation_reason = "Correct source readings"
+        cancelled.action_cancel()
+        with self.assertRaisesRegex(UserError, "all companion bills"):
+            (bills - cancelled).action_approve()
+        cancelled.action_reset_draft()
+        self.assertEqual(cancelled.state, "draft")
+        self.assertFalse(cancelled.line_ids)
+        self.assertFalse(cancelled.source_reading_ids)
+        self.assertFalse(cancelled.calculated_at)
+
+    def test_cannot_cancel_companion_of_approved(self):
+        """Cancelling a different payer must not invalidate an approved node."""
+        bills = self._calculate()
+        bills[:1].action_approve()
+        other = bills - bills[:1]
+        other.cancellation_reason = "Attempt to break the node balance"
+        with self.assertRaisesRegex(UserError, "companion bill is approved"):
+            other.action_cancel()
+
+    def test_rounding_and_zero_usage(self):
+        """The last unmetered object absorbs the six-decimal energy remainder."""
+        self.objects.filtered(lambda obj: not obj.meter_id).heated_volume_m3 = 1
+        self.readings.filtered(
+            lambda r: r.meter_id == self.meters[0] and str(r.reading_date) == "2026-11-01"
+        ).value = 1100.000001
+        bills = self._calculate()
+        self.assertAlmostEqual(sum(bills.line_ids.mapped("quantity_gcal")), 100.000001, places=6)
+        bills.action_approve()
+        for line in bills.line_ids:
+            self.assertEqual(
+                line.subtotal, line.currency_id.round(line.quantity_gcal * line.price_unit)
+            )
+
+    def test_line_payer_constraint(self):
+        """Even the internal constructor cannot attach a line to another payer."""
+        bills = self._calculate()
+        pharmacy = bills.filtered(lambda bill: bill.consumer_id == self.pharmacy_b)
+        values = dict(bills[:1].calculation_log[0]["lines"][0], bill_id=pharmacy.id)
+        bills.line_ids.filtered(
+            lambda line: line.supply_object_id.id == values["supply_object_id"]
+        )._clear_snapshots()
+        with self.assertRaisesRegex(ValidationError, "payer must match"), self.cr.savepoint():
+            self.env["heat.bill.line"]._create_snapshots([values])
+
+    def test_sales_visibility_and_controller_transition(self):
+        """Normal Sales sees assigned bills, Admin sees all, Controller cannot act."""
+        sales = self._user("bill_sales", "sales")
+        admin = self._user("bill_admin", "admin")
+        controller = self._user("bill_controller", "controller")
+        first, second = self.Bill.create(
+            [
+                {
+                    "consumer_id": self.hospital.id,
+                    "period_start": self.period,
+                    "responsible_user_id": sales.id,
+                },
+                {
+                    "consumer_id": self.pharmacy_b.id,
+                    "period_start": self.period,
+                    "responsible_user_id": admin.id,
+                },
+            ]
+        )
+        domain = [("id", "in", (first | second).ids)]
+        self.assertEqual(self.Bill.with_user(sales).search(domain), first)
+        self.assertEqual(len(self.Bill.with_user(admin).search(domain)), 2)
+        with self.assertRaises(AccessError):
+            first.with_user(controller).action_calculate()
+        with self.assertRaises(AccessError):
+            first.with_user(sales).action_calculate()
+        self.assertEqual(first.state, "draft")
+
+    def test_zero_usage_is_explicitly_allowed(self):
+        """Zero-energy months retain object lines and may be approved."""
+        self.readings.write({"value": 0})
+        bills = self._calculate()
+        self.assertEqual(sum(bills.mapped("energy_total_gcal")), 0)
+        self.assertEqual(sum(bills.mapped("amount_untaxed")), 0)
+        bills.action_approve()

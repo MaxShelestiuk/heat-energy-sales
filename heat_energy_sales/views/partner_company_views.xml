@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_partner_heat" model="ir.ui.view">
+        <field name="name">res.partner.heat</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Heat Energy" groups="heat_energy_sales.group_heat_user">
+                    <group>
+                        <field name="is_heat_consumer"/>
+                        <field name="heat_category_id" required="is_heat_consumer"/>
+                        <field name="has_heat_contract"/>
+                        <field name="heat_contract_number"/>
+                        <field name="heat_contract_date"/>
+                    </group>
+                    <field name="heat_object_ids" readonly="1"/>
+                    <field name="heat_bill_count" readonly="1"/>
+                    <field name="heat_bill_ids" readonly="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_company_heat" model="ir.ui.view">
+        <field name="name">res.company.heat</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Heat Energy" groups="heat_energy_sales.group_heat_admin">
+                    <group>
+                        <field name="heat_responsible_user_id"/>
+                        <field name="heat_service_product_id"/>
+                        <field name="heat_report_footer"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
